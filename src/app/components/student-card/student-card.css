@@ -1,0 +1,93 @@
+/* =====================================================================
+   FILE: components/student-card/student-card.css
+   WHAT: The styles of the student card. They apply only to this
+         component, because Angular scopes them automatically.
+   WHY:  Colors, radius and spacing come from the design tokens in
+         src/styles.css, so the card matches the rest of the site.
+   ===================================================================== */
+
+/* The card container: a white rounded box with a thin border. */
+.card {
+  /* An <a> is inline by default. Flex lets it hold a column of content. */
+  display: flex;
+  /* Stack the photo and the body vertically. */
+  flex-direction: column;
+  /* All cards in a row get the same height. */
+  height: 100%;
+  /* Clip the photo to the rounded corners. */
+  overflow: hidden;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+/* The card container: a white rounded box with a thin border. */
+.card {
+  /* An <a> is inline by default. Flex lets it hold a column of content. */
+  display: flex;
+  /* Stack the photo and the body vertically. */
+  flex-direction: column;
+  /* All cards in a row get the same height. */
+  height: 100%;
+  /* Clip the photo to the rounded corners. */
+  overflow: hidden;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  /* Animate the hover effect smoothly. */
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+/* Hover: the card lifts slightly and gets a shadow. */
+.card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+/* The portrait: the same 310 by 246 shape for every student. */
+.card__photo {
+  /* Fill the full width of the card. */
+  width: 100%;
+  /* Keep the 310 by 246 proportions at any card width. */
+  aspect-ratio: 310 / 246;
+  /* Crop the extra part of the photo instead of stretching it. */
+  object-fit: cover;
+}
+/* The white area under the photo: a column with padding and a gap. */
+.card__body {
+  display: flex;
+  flex-direction: column;
+  /* 12px between the lines. */
+  gap: var(--space-3);
+  /* 20px padding. */
+  padding: var(--space-5);
+}
+
+/* One row: the name on the left, the arrow pushed to the right. */
+.card__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Name: Inter, semibold, 19px. Shorthand: weight size/line-height family. */
+.card__name {
+  font: 600 19px/1.2 var(--font-sans);
+}
+
+/* Arrow: red icon, 18px. Its stroke uses currentColor, so it takes this color. */
+.card__arrow {
+  width: 18px;
+  height: 18px;
+  color: var(--color-red);
+}
+
+/* Faculty and class year: 10px, uppercase, spaced letters, gray. */
+.card__meta {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Quote: Lora, italic, 17px. */
+.card__quote {
+  font: italic 400 17px/1.4 var(--font-serif);
+}

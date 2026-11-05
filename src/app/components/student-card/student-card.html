@@ -1,0 +1,43 @@
+<!-- =====================================================================
+     FILE: components/student-card/student-card.html
+     WHAT: The template of the student card (what is drawn on screen).
+     WHY:  It only shows the student given through the input, so the same
+           card works for any student.
+     ===================================================================== -->
+
+<!-- 1. The outer link. It contains everything. routerLink builds
+        /students/<id> and navigates without reloading the page. -->
+<a class="card" [routerLink]="['/students', student().id]"
+   [attr.aria-label]="'Read the story of ' + student().name">
+
+    <!-- 2. The portrait. [src] shows the placeholder if the real image failed.
+          (error) is an event binding: when the image fails to load, run
+          onImageError(). -->
+  <img class="card__photo" [src]="photoSrc()"
+       [alt]="'Portrait of ' + student().name" loading="lazy"
+       (error)="onImageError()">
+
+  <!-- 3. The white area under the photo. It holds the text. -->
+  <div class="card__body">
+
+    <!-- 4. One row: the name on the left, the arrow on the right. -->
+    <div class="card__heading">
+      <!-- 5. The student's name. -->
+      <h3 class="card__name">{{ student().name }}</h3>
+      <!-- 6. The arrow icon, drawn with SVG. currentColor makes it use the
+              text color, so CSS can make it red later. aria-hidden hides
+              it from screen readers because it is only decoration. -->
+      <svg class="card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M7 17 17 7M8 7h9v9" />
+      </svg>
+    </div>
+
+    <!-- 7. Faculty and class year: text and two {{ }} mixed in one line. -->
+    <p class="card__meta">{{ student().faculty }} · Class of {{ student().classYear }}</p>
+
+    <!-- 8. The student's quote, inside curly quotes. -->
+    <p class="card__quote">“{{ student().quote }}”</p>
+  </div>
+</a>
